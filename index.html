@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lì Xì Thịnh</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(135deg,#b30000,#ff1a1a);
+    font-family:Arial, sans-serif;
+    text-align:center;
+    color:white;
+}
+
+h1{
+    margin-top:80px;
+    font-size:28px;
+}
+
+.container{
+    margin-top:40px;
+    position:relative;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#btnA{
+    position:absolute;
+    background:gold;
+    color:black;
+}
+
+#btnB{
+    background:white;
+    color:red;
+}
+
+#result{
+    margin-top:30px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Hiệu ứng lì xì rơi */
+.lixi{
+    position:fixed;
+    top:-50px;
+    font-size:24px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Bạn muốn nhận lì xì bao nhiêu từ Thịnh?</h1>
+
+<div class="container">
+    <button id="btnA">A 500k 🤑</button>
+    <button id="btnB">B 0₫ 😏</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+const btnA = document.getElementById("btnA");
+const btnB = document.getElementById("btnB");
+const result = document.getElementById("result");
+
+/* Nút 500k chạy loạn */
+btnA.addEventListener("mouseover", function(){
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    btnA.style.left = x + "px";
+    btnA.style.top = y + "px";
+});
+
+/* Bấm 0đ */
+btnB.addEventListener("click", function(){
+    result.innerHTML = "🎉 Chúc mừng bạn nhận được 0đ 😏";
+});
+
+/* Tạo lì xì rơi */
+function createLixi(){
+    const lixi = document.createElement("div");
+    lixi.classList.add("lixi");
+    lixi.innerHTML = "🧧";
+    lixi.style.left = Math.random() * 100 + "vw";
+    lixi.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(lixi);
+
+    setTimeout(()=>{
+        lixi.remove();
+    },5000);
+}
+
+setInterval(createLixi,300);
+</script>
+
+</body>
+</html>
