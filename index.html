@@ -9,20 +9,21 @@
 body{
     margin:0;
     overflow:hidden;
-    background:linear-gradient(135deg,#b30000,#ff1a1a);
+    background:linear-gradient(135deg,#990000,#ff1a1a);
     font-family:Arial, sans-serif;
     text-align:center;
     color:white;
 }
 
 h1{
-    margin-top:80px;
-    font-size:28px;
+    margin-top:100px;
+    font-size:26px;
 }
 
 .container{
-    margin-top:40px;
+    margin-top:60px;
     position:relative;
+    height:200px;
 }
 
 button{
@@ -31,27 +32,30 @@ button{
     border:none;
     border-radius:12px;
     cursor:pointer;
-    transition:0.2s;
+    position:absolute;
 }
 
 #btnA{
-    position:absolute;
     background:gold;
     color:black;
+    left:40%;
+    top:40%;
 }
 
 #btnB{
     background:white;
     color:red;
+    left:40%;
+    top:60%;
 }
 
 #result{
-    margin-top:30px;
+    margin-top:40px;
     font-size:24px;
     font-weight:bold;
 }
 
-/* Hiệu ứng lì xì rơi */
+/* lì xì rơi */
 .lixi{
     position:fixed;
     top:-50px;
@@ -84,20 +88,24 @@ const btnA = document.getElementById("btnA");
 const btnB = document.getElementById("btnB");
 const result = document.getElementById("result");
 
-/* Nút 500k chạy loạn */
-btnA.addEventListener("mouseover", function(){
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
+/* A né liên tục khi lại gần */
+function moveButton(){
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 100);
     btnA.style.left = x + "px";
     btnA.style.top = y + "px";
-});
+}
 
-/* Bấm 0đ */
+btnA.addEventListener("mouseenter", moveButton);
+btnA.addEventListener("mouseover", moveButton);
+btnA.addEventListener("click", moveButton);
+
+/* B bấm được */
 btnB.addEventListener("click", function(){
-    result.innerHTML = "🎉 Chúc mừng bạn nhận được 0đ 😏";
+    result.innerHTML = "🎉 Chúc mừng bạn đã nhận được 0đ 😏";
 });
 
-/* Tạo lì xì rơi */
+/* tạo lì xì rơi */
 function createLixi(){
     const lixi = document.createElement("div");
     lixi.classList.add("lixi");
